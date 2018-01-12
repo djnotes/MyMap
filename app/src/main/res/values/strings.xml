@@ -3,4 +3,5 @@
     <string name="welcome_message">Select an activity from the options menu</string>
     <string name="map_activity">Map Activity</string>
     <string name="title_activity_map">Map</string>
+    <string name="go">Go</string>
 </resources>

@@ -12,6 +12,7 @@ import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.OptionsMenuItem;
 
+import sematec.mehdi.mymap.map.MapActivity_;
 import sematec.mehdi.mymap.util.BaseActivity;
 
 /**

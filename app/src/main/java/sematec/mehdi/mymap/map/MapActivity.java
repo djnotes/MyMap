@@ -1,4 +1,4 @@
-package sematec.mehdi.mymap;
+package sematec.mehdi.mymap.map;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -14,16 +14,22 @@ import org.androidannotations.annotations.AfterExtras;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 
+import sematec.mehdi.mymap.R;
+
 @EActivity(R.layout.activity_map)
-public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapActivity extends FragmentActivity implements OnMapReadyCallback, MapContract.View {
 
     private GoogleMap mMap;
+    private MapContract.Presenter mPresenter;
+
 
     @AfterViews
+
     void init() {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        mPresenter = new MapPresenter();
     }
 
     /**
@@ -43,5 +49,11 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
+
+    @Override
+    public void onNavToPosition(double lat, double lng) {
+        LatLng latLng = new LatLng(lat, lng);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
     }
 }
