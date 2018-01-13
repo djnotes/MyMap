@@ -2,6 +2,7 @@ package sematec.mehdi.mymap.map;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.EditText;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -12,9 +13,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.androidannotations.annotations.AfterExtras;
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
+import java.security.PublicKey;
 
 import sematec.mehdi.mymap.R;
+import sematec.mehdi.mymap.util.PublicMethods;
 
 @EActivity(R.layout.activity_map)
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback, MapContract.View {
@@ -22,14 +28,27 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
     private GoogleMap mMap;
     private MapContract.Presenter mPresenter;
 
+    @ViewById
+    EditText searchBar;
+
 
     @AfterViews
-
     void init() {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mPresenter = new MapPresenter();
+        mPresenter.attachView(this);
+        mPresenter.attachContext(this);
+    }
+    @Click
+    void searchBar() {
+        mPresenter.onInputChanged();
+    }
+    @Click
+    void go() {
+        String keyword = searchBar.getText().toString();
+        mPresenter.lookupAddress(keyword);
     }
 
     /**
@@ -55,5 +74,10 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
     public void onNavToPosition(double lat, double lng) {
         LatLng latLng = new LatLng(lat, lng);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+    }
+
+    @Override
+    public void onGetLocation(double lat, double lng) {
+        PublicMethods.showToast(this, "Lat, Lng: " + lat + " , " + lng );
     }
 }

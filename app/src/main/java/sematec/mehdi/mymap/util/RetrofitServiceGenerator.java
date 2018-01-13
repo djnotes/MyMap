@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class RetrofitServiceGenerator {
-    public static final String API_BASE_URL = "http://maps.googleapis.com/maps/api/geocode/json";
+    public static final String API_BASE_URL = "https://maps.googleapis.com/maps/api/geocode/";
     private static OkHttpClient httpClient =
             new OkHttpClient();
     private static Retrofit.Builder builder =
