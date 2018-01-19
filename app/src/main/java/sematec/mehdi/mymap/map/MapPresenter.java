@@ -17,11 +17,11 @@ public class MapPresenter implements MapContract.Presenter {
     private static final String LOG_TAG = MapPresenter.class.getSimpleName();
     private MapContract.View mView;
     private Context mContext;
-    private MyModel mModel;
+    private MapModel mModel;
 
     public MapPresenter() {
         super();
-        mModel = new MyModel(this);
+        mModel = new MapModel(this);
     }
 
     @Override
@@ -55,14 +55,13 @@ public class MapPresenter implements MapContract.Presenter {
     }
 
     @Override
-    public void onSearchSuccess(Geometry geometry) {
-        Location loc = geometry.getLocation();
-        if(loc == null) {
+    public void onSearchSuccess(Location location) {
+        if(location == null) {
             PublicMethods.showToast(mContext, "location null");
             return;
         }
-        double lat = loc.getLat();
-        double lng = loc.getLng();
+        double lat = location.getLat();
+        double lng = location.getLng();
         mView.onGetLocation(lat, lng);
     }
 }

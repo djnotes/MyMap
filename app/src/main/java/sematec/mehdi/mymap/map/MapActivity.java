@@ -40,7 +40,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
         mPresenter = new MapPresenter();
         mPresenter.attachView(this);
         mPresenter.attachContext(this);
-    }
+     }
     @Click
     void searchBar() {
         mPresenter.onInputChanged();

@@ -34,6 +34,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'com.android.support:design:27.0.2'
     compile 'com.squareup.okhttp3:okhttp:3.9.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
 
     def AAVersion = "4.4.0"
     // change this to your desired version, for example the latest stable: 4.3.1

@@ -22,7 +22,7 @@ public interface MapContract {
 
         void lookupAddress(String keyword);
 
-        void onSearchSuccess(Geometry loc);
+        void onSearchSuccess(Location loc);
 
     }
 
