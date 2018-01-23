@@ -39,8 +39,7 @@ public class MapModel {
                     }
 
                     @Override
-                    public void onFailure(Call<Result[]> call, Throwable t) {
-                        mPresenter.onSearchFailed("Search failed");
+                    public void onFailure(Call<Result[]> call, Throwable t) {mPresenter.onSearchFailed("Search failed");
                     }
                 }
         );
