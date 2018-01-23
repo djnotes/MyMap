@@ -10,6 +10,7 @@ import retrofit2.Response;
 import sematec.mehdi.mymap.util.Constants;
 import sematec.mehdi.mymap.webmodels.Geometry;
 import sematec.mehdi.mymap.webmodels.Location;
+import sematec.mehdi.mymap.webmodels.Result;
 
 /**
  * Created by johndoe on 1/14/18.
@@ -27,17 +28,18 @@ public class MapModel {
     public void lookupAddress(String address) throws IOException {
 
         Constants.WebServiceInterface .lookupAddress(Constants.GOOGLE_API_KEY, address).enqueue(
-                new Callback<Location>() {
+                new Callback<Result[]>() {
                     @Override
-                    public void onResponse(Call<Location> call, Response<Location> response) {
-                        mResLocation = response.body();
+                    public void onResponse(Call<Result[]> call, Response<Result[]> response) {
+
+                        mResLocation = response.body()[0].getGeometry().getLocation();
                         Log.i(TAG, "onResponse: " + response.toString());
                         Log.i(TAG, "Location : " + mResLocation.getLat() + " : " + mResLocation.getLat());
-                        mPresenter.onSearchSuccess(response.body());
+                        mPresenter.onSearchSuccess(mResLocation);
                     }
 
                     @Override
-                    public void onFailure(Call<Location> call, Throwable t) {
+                    public void onFailure(Call<Result[]> call, Throwable t) {
                         mPresenter.onSearchFailed("Search failed");
                     }
                 }

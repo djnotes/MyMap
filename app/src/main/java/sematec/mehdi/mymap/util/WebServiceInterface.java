@@ -7,6 +7,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 import sematec.mehdi.mymap.webmodels.Geometry;
 import sematec.mehdi.mymap.webmodels.Location;
+import sematec.mehdi.mymap.webmodels.Result;
 
 /**
  * Created by johndoe on 1/13/18.
@@ -15,5 +16,5 @@ import sematec.mehdi.mymap.webmodels.Location;
 public interface WebServiceInterface {
 
     @GET("json")
-    Call<Location> lookupAddress(@Query ("key") String apiKey, @Query("address") String searchTerm);
+    Call<Result[]> lookupAddress(@Query ("key") String apiKey, @Query("address") String searchTerm);
 }
