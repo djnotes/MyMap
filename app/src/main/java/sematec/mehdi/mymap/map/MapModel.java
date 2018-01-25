@@ -7,7 +7,10 @@ import java.io.IOException;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 import sematec.mehdi.mymap.util.Constants;
+import sematec.mehdi.mymap.util.RetrofitServiceGenerator;
 import sematec.mehdi.mymap.webmodels.Geometry;
 import sematec.mehdi.mymap.webmodels.Location;
 import sematec.mehdi.mymap.webmodels.Result;
@@ -24,24 +27,33 @@ public class MapModel {
     public MapModel(MapContract.Presenter presenter) {
         mPresenter = presenter;
     }
+    public static WebServiceInterface WebServiceInterface = RetrofitServiceGenerator.create(WebServiceInterface.class);
+
 
     public void lookupAddress(String address) throws IOException {
 
-        Constants.WebServiceInterface .lookupAddress(Constants.GOOGLE_API_KEY, address).enqueue(
-                new Callback<Result[]>() {
+        WebServiceInterface .lookupAddress(Constants.GOOGLE_API_KEY, address).enqueue(
+                new Callback<Result>() {
                     @Override
-                    public void onResponse(Call<Result[]> call, Response<Result[]> response) {
+                    public void onResponse(Call<Result> call, Response<Result> response) {
 
-                        mResLocation = response.body()[0].getGeometry().getLocation();
                         Log.i(TAG, "onResponse: " + response.toString());
                         Log.i(TAG, "Location : " + mResLocation.getLat() + " : " + mResLocation.getLat());
+                        mResLocation = response.body().getGeometry().getLocation();
                         mPresenter.onSearchSuccess(mResLocation);
                     }
 
                     @Override
-                    public void onFailure(Call<Result[]> call, Throwable t) {mPresenter.onSearchFailed("Search failed");
+                    public void onFailure(Call<Result> call, Throwable t) {mPresenter.onSearchFailed("Search failed");
                     }
                 }
         );
     }
+    public interface WebServiceInterface {
+
+        @GET("json")
+        Call<Result> lookupAddress(@Query("key") String apiKey, @Query("address") String searchTerm);
+    }
+
 }
+

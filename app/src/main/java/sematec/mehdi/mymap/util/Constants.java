@@ -5,7 +5,6 @@ package sematec.mehdi.mymap.util;
  */
 
     public abstract class Constants {
-    public static WebServiceInterface WebServiceInterface = RetrofitServiceGenerator.create(WebServiceInterface.class);
     public static final String GOOGLE_API_KEY = "AIzaSyCCih-tzM2G1Vx9LGdo-k8RfuAu402uTvc";
     public static final String API_BASE_URL = "https://maps.googleapis.com/maps/api/geocode/";
 
