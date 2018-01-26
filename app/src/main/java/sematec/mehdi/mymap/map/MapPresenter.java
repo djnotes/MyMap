@@ -6,7 +6,6 @@ import android.util.Log;
 import java.io.IOException;
 
 import sematec.mehdi.mymap.util.PublicMethods;
-import sematec.mehdi.mymap.webmodels.Geometry;
 import sematec.mehdi.mymap.webmodels.Location;
 
 /**
@@ -14,7 +13,7 @@ import sematec.mehdi.mymap.webmodels.Location;
  */
 
 public class MapPresenter implements MapContract.Presenter {
-    private static final String LOG_TAG = MapPresenter.class.getSimpleName();
+    private static final String TAG = MapPresenter.class.getSimpleName();
     private MapContract.View mView;
     private Context mContext;
     private MapModel mModel;
@@ -47,10 +46,11 @@ public class MapPresenter implements MapContract.Presenter {
 
     @Override
     public void lookupAddress(String keyword) {
+        Log.i(TAG, "queryAddress: " + keyword);
         try {
-            mModel.lookupAddress(keyword);
+            mModel.queryAddress(keyword);
         } catch(IOException e) {
-            Log.e(LOG_TAG, "IOExceptio: " + e.getMessage());
+            Log.e(TAG, "IOExceptio: " + e.getMessage());
         }
     }
 

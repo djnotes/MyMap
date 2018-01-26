@@ -30,7 +30,7 @@ public class MapModel {
     public static WebServiceInterface WebServiceInterface = RetrofitServiceGenerator.create(WebServiceInterface.class);
 
 
-    public void lookupAddress(String address) throws IOException {
+    public void queryAddress(String address) throws IOException {
 
         WebServiceInterface .lookupAddress(Constants.GOOGLE_API_KEY, address).enqueue(
                 new Callback<Result>() {
