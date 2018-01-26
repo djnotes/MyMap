@@ -79,5 +79,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
     @Override
     public void onGetLocation(double lat, double lng) {
         PublicMethods.showToast(this, "Lat, Lng: " + lat + " , " + lng );
-    }
+        LatLng loc = new LatLng(lat, lng);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat, lng)));
+        mMap.addMarker(new MarkerOptions().position(loc).title("Here"));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(loc.latitude, loc.longitude), 12.0f));    }
 }
