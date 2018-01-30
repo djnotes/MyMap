@@ -4,4 +4,9 @@
     <string name="map_activity">Map Activity</string>
     <string name="title_activity_map">Map</string>
     <string name="go">Go</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="login">Log in</string>
 </resources>
