@@ -20,6 +20,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -35,15 +39,17 @@ dependencies {
     implementation 'com.android.support:design:27.0.2'
     compile 'com.squareup.okhttp3:okhttp:3.9.1'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
-
     def AAVersion = "4.4.0"
     // change this to your desired version, for example the latest stable: 4.3.1
     dependencies {
         annotationProcessor "org.androidannotations:androidannotations:$AAVersion"
         implementation "org.androidannotations:androidannotations-api:$AAVersion"
     }
-    compile 'io.reactivex.rxjava2:rxjava:2.1.5'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    // Because RxAndroid releases are few and far between, it is recommended you also
+    // explicitly depend on RxJava's latest version for bug fixes and new features.
+    compile 'io.reactivex.rxjava2:rxjava:2.1.8'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
 }

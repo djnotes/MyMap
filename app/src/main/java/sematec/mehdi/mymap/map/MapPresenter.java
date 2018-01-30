@@ -35,7 +35,7 @@ public class MapPresenter implements MapContract.Presenter {
 
     @Override
     public void onInputChanged() {
-        PublicMethods.showToast(mContext,"You clicked inside the search bar");
+//        PublicMethods.showToast(mContext,"You clicked inside the search bar");
 
     }
 
@@ -63,5 +63,13 @@ public class MapPresenter implements MapContract.Presenter {
         double lat = location.getLat();
         double lng = location.getLng();
         mView.onGetLocation(lat, lng);
+    }
+
+    @Override
+    public void onTimeCheck() {
+        boolean isDaylight = mModel.isDaylight();
+        if(isDaylight) mView.onSetDayStyle();
+        else mView.onSetNightStyle();
+        Log.i(TAG, "onTimeCheck: " + String.valueOf(isDaylight));
     }
 }

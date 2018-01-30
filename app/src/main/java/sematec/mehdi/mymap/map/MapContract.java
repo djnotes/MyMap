@@ -24,11 +24,16 @@ public interface MapContract {
 
         void onSearchSuccess(Location loc);
 
+        void onTimeCheck();
     }
 
     interface View {
         void onNavToPosition(double lat, double lng);
 
         void onGetLocation(double lat, double lng);
+
+        void onSetDayStyle();
+
+        void onSetNightStyle();
     }
 }

@@ -1,7 +1,9 @@
 package sematec.mehdi.mymap.map;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -9,15 +11,13 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.androidannotations.annotations.AfterExtras;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
-
-import java.security.PublicKey;
 
 import sematec.mehdi.mymap.R;
 import sematec.mehdi.mymap.util.PublicMethods;
@@ -25,8 +25,10 @@ import sematec.mehdi.mymap.util.PublicMethods;
 @EActivity(R.layout.activity_map)
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback, MapContract.View {
 
+    private static final String TAG = MapActivity.class.getSimpleName();
     private GoogleMap mMap;
     private MapContract.Presenter mPresenter;
+    private Context mContext = this;
 
     @ViewById
     EditText searchBar;
@@ -40,6 +42,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
         mPresenter = new MapPresenter();
         mPresenter.attachView(this);
         mPresenter.attachContext(this);
+
      }
     @Click
     void searchBar() {
@@ -63,6 +66,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mPresenter.onTimeCheck();
+
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
@@ -83,4 +88,30 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
         mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat, lng)));
         mMap.addMarker(new MarkerOptions().position(loc).title("Here"));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(loc.latitude, loc.longitude), 12.0f));    }
+
+    @Override
+    public void onSetDayStyle() {
+        try {
+
+            boolean success = mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(mContext, R.raw.style_json_standard));
+            if ( !success ) {
+                Log.e(TAG, "onSetDayStyle: style parsing failed" );
+            }
+        } catch(Resources.NotFoundException e) {
+            Log.e(TAG, "onSetDayStyle: Resource not found" );
+        }
+    }
+
+    @Override
+    public void onSetNightStyle() {
+        try {
+
+            boolean success = mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(mContext, R.raw.style_json_night));
+            if ( !success ) {
+                Log.e(TAG, "onSetDayStyle: style parsing failed" );
+            }
+        } catch(Resources.NotFoundException e) {
+            Log.e(TAG, "onSetDayStyle: Resource not found" );
+        }
+    }
 }

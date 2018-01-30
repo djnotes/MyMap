@@ -21,7 +21,7 @@ import sematec.mehdi.mymap.util.BaseActivity;
 
 @EActivity(R.layout.activity_main)
 @OptionsMenu(R.menu.options_menu)
-public class MainActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity {
 
     @OptionsMenuItem
     MenuItem mapItem;
