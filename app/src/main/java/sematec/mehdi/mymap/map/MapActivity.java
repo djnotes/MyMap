@@ -20,7 +20,7 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import sematec.mehdi.mymap.R;
-import sematec.mehdi.mymap.util.PublicMethods;
+import sematec.mehdi.mymap.util.Util;
 
 @EActivity(R.layout.activity_map)
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback, MapContract.View {
@@ -83,7 +83,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
 
     @Override
     public void onGetLocation(double lat, double lng) {
-        PublicMethods.showToast(this, "Lat, Lng: " + lat + " , " + lng );
+        Util.showToast(this, "Lat, Lng: " + lat + " , " + lng );
         LatLng loc = new LatLng(lat, lng);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat, lng)));
         mMap.addMarker(new MarkerOptions().position(loc).title("Here"));

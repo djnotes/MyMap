@@ -1,40 +1,105 @@
 package sematec.mehdi.mymap.user;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
 import sematec.mehdi.mymap.R;
+import sematec.mehdi.mymap.WelcomeActivity;
+import sematec.mehdi.mymap.map.MapActivity_;
+import sematec.mehdi.mymap.util.BaseActivity;
+import sematec.mehdi.mymap.util.Util;
 
-public class UserActivity extends AppCompatActivity implements UserContract.View{
+@EActivity(R.layout.activity_user)
+public class UserActivity extends BaseActivity implements UserContract.View {
 
-    private MaterialEditText email;
+    private static final String TAG = UserActivity.class.getSimpleName();
+    private UserContract.Presenter mPresenter;
+    private boolean isLogin = false;
 
-    private MaterialEditText password;
+    @ViewById
+    MaterialEditText fullName;
 
-    private MaterialEditText passwordConfirm;
+    @ViewById
+    MaterialEditText email;
 
-    private Button register;
+    @ViewById
+    MaterialEditText password;
+
+    @ViewById
+    MaterialEditText passwordConfirm;
+
+    @ViewById
+    MaterialEditText mobile;
+
+    @ViewById
+    Button submit;
+
+
+    @AfterViews
+    void init() {
+        mPresenter = new UserPresenter(this, this);
+        isLogin = getIntent().getBooleanExtra(WelcomeActivity.EXTRA_LOGIN, false);
+        if (isLogin) {
+            passwordConfirm.setVisibility(View.GONE);
+            fullName.setVisibility(View.GONE);
+            mobile.setVisibility(View.GONE);
+        }
+
+        //Set click listene
+    }
+
+    @Click
+    void submitClicked() {
+
+        String name, passwordConfirmText, mobileText;
+        String emailText = email.getText().toString();
+        String passwordText = password.getText().toString();
+        if (!isLogin) {
+            name = fullName.getText().toString();
+            passwordConfirmText = passwordConfirm.getText().toString();
+            mobileText = mobile.getText().toString();
+             mPresenter.onRegister(name, emailText, passwordText, mobileText);
+        }
+        else {
+            mPresenter.onLogin(emailText, passwordText);
+        }
+    }
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
-
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
-        passwordConfirm = findViewById(R.id.passwordConfirm);
-        register = findViewById(R.id.register);
-
-        //Set click listener
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+    public void onRegisterFailed() {
+        Util.showToast(mContext, R.string.registration_failed);
     }
+
+    @Override
+    public void onRegisterSuccess() {
+        Util.showToast(mContext, R.string.registration_successful);
+    }
+
+    @Override
+    public void onLoginFailed() {
+        Util.showToast(mContext, R.string.login_failed);
+    }
+
+    @Override
+    public void onLoginSuccess() {
+        Util.showToast(mContext, R.string.login_success);
+
+        //Open map activity
+        Intent intent = new Intent(this, MapActivity_.class);
+        startActivity(intent);
+
+    }
+
 }

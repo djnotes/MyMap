@@ -8,7 +8,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "sematec.mehdi.mymap"
-        minSdkVersion 14
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -53,5 +53,8 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxjava:2.1.8'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
+
+    //For styleable toasts
+    implementation 'com.muddzdev:styleabletoast:2.0.1'
 
 }

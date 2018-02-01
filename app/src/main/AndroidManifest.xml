@@ -42,7 +42,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="sematec.mehdi.mymap.WelcomeActivity" />
         </activity>
-        <activity android:name=".user.UserActivity"></activity>
+        <activity android:name=".user.UserActivity_"></activity>
     </application>
 
 </manifest>

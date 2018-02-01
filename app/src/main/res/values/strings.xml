@@ -9,4 +9,15 @@
     <string name="register">Register</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="login">Log in</string>
+    <string name="mobile">Mobile</string>
+    <string name="new_user_register">New User? Register</string>
+    <string name="already_have_an_account_login">Already have an account? Log in</string>
+    <string name="welcome">Welcome to My Map Service</string>
+    <string name="welcome_to_my_map_app">Welcome to My Map App</string>
+    <string name="fullname">Full Name</string>
+    <string name="send">Send</string>
+    <string name="login_failed">Log in failed</string>
+    <string name="registration_successful">Registration successful</string>
+    <string name="login_success">Log in successful. Welcome!</string>
+    <string name="registration_failed">User registration failed</string>
 </resources>

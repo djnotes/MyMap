@@ -5,7 +5,7 @@ import android.util.Log;
 
 import java.io.IOException;
 
-import sematec.mehdi.mymap.util.PublicMethods;
+import sematec.mehdi.mymap.util.Util;
 import sematec.mehdi.mymap.webmodels.Location;
 
 /**
@@ -35,13 +35,13 @@ public class MapPresenter implements MapContract.Presenter {
 
     @Override
     public void onInputChanged() {
-//        PublicMethods.showToast(mContext,"You clicked inside the search bar");
+//        Util.showToast(mContext,"You clicked inside the search bar");
 
     }
 
     @Override
     public void onSearchFailed(String s) {
-        PublicMethods.showToast(mContext, s);
+        Util.showToast(mContext, s);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class MapPresenter implements MapContract.Presenter {
     @Override
     public void onSearchSuccess(Location location) {
         if(location == null) {
-            PublicMethods.showToast(mContext, "location null");
+            Util.showToast(mContext, "location null");
             return;
         }
         double lat = location.getLat();
