@@ -54,6 +54,10 @@ public class UserActivity extends BaseActivity implements UserContract.View {
             passwordConfirm.setVisibility(View.GONE);
             fullName.setVisibility(View.GONE);
             mobile.setVisibility(View.GONE);
+            submit.setText(R.string.login);
+        }
+        else {
+            submit.setText(R.string.register);
         }
 
         //Set click listene

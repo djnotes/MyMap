@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyMap</string>
+    <string name="welcome_message">یک اکتیویتی انتخاب کنید</string>
+    <string name="map_activity">اکتیویتی مپ</string>
+    <string name="title_activity_map">نقشه</string>
+    <string name="go">برو</string>
+    <string name="email">ایمیل</string>
+    <string name="password">کلمه عبور</string>
+    <string name="register">ثبت نام</string>
+    <string name="confirm_password">تایید کلمه عبور</string>
+    <string name="login">ورود</string>
+    <string name="mobile">موبایل</string>
+    <string name="new_user_register">کاربر جدید؟ ثبت نام</string>
+    <string name="already_have_an_account_login">حساب دارید؟ ورود</string>
+    <string name="welcome">به سرویس مپ من خوش آمدید</string>
+    <string name="welcome_to_my_map_app">به اپلیکیشن نقشه من خوش آمدید</string>
+    <string name="fullname">نام کامل</string>
+    <string name="send">ارسال</string>
+    <string name="login_failed">ورود شکست خورد</string>
+    <string name="registration_successful">ثبت نام موفق</string>
+    <string name="login_success">ورود موفق. خوش آمدید</string>
+    <string name="registration_failed">ثبت نام کاربر شکست خورد</string>
+    <string name="please_select_language">لطفا زبان برنامه را انتخاب کنید</string>
+    <string name="english">English</string>
+    <string name="persian">فارسی</string>
+</resources>

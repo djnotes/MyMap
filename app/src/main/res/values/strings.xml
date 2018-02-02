@@ -20,4 +20,7 @@
     <string name="registration_successful">Registration successful</string>
     <string name="login_success">Log in successful. Welcome!</string>
     <string name="registration_failed">User registration failed</string>
+    <string name="please_select_language">Please select language</string>
+    <string name="persian">فارسی</string>
+    <string name="english">English</string>
 </resources>
