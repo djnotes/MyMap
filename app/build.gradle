@@ -26,6 +26,12 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url 'https://dl.bintray.com/pegah-backtory/maven/'
+    }
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
@@ -56,5 +62,7 @@ dependencies {
 
     //For styleable toasts
     implementation 'com.muddzdev:styleabletoast:2.0.1'
+
+    compile 'com.pegah.backtory:backtory-android-sdk:0.6.6' // put the latest version here
 
 }
